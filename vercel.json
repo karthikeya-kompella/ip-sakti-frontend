@@ -1,0 +1,11 @@
+@"
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/app/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+"@ | Set-Content -Encoding utf8 vercel.json
