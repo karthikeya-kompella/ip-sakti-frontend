@@ -1,0 +1,148 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IP-SAKTI Sahayak — Ayurveda IP &amp; Regulatory Intelligence</title><link rel="stylesheet" href="/theme.css"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500&family=Noto+Sans+Telugu:wght@500&display=swap" rel="stylesheet">
+<style>
+.w{max-width:1240px;margin:0 auto;padding:0 28px}section{padding:110px 0}
+#pg{position:fixed;top:0;left:0;height:2px;width:0;background:var(--p);z-index:30}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:.3s}nav.s{background:rgba(5,8,6,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--bs)}
+nav .w{display:flex;align-items:center;gap:30px;height:66px}.sp{flex:1}nav a.l{color:#a9c4b6;font-size:13px;transition:.2s}nav a.l:hover{color:var(--tx)}
+.brand{font:600 16px Sora;color:var(--tx)!important}.brand i{font-style:normal;color:var(--mu);font:400 10px "JetBrains Mono";margin-left:8px;letter-spacing:.12em}
+.hero{min-height:100vh;display:grid;align-items:center;padding:110px 0 56px}.hg{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}
+h1{font-size:clamp(38px,6vw,86px);line-height:1;letter-spacing:-.04em}.ln{display:block;overflow:hidden;padding-bottom:.1em}
+.ln>span{display:block;transform:translateY(110%);animation:ln 1.1s cubic-bezier(.2,.8,.2,1) forwards}.ln:nth-child(2)>span{animation-delay:.12s}.ln:nth-child(3)>span{animation-delay:.24s;color:var(--t)}
+@keyframes ln{to{transform:none}}.fd{opacity:0;animation:fd .9s .6s forwards}.fd2{animation-delay:.8s}@keyframes fd{to{opacity:1}}
+.lead{font-size:18px;line-height:28px;color:#b9cbb9;max-width:52ch;margin:26px 0 30px}.cta{display:flex;gap:12px;flex-wrap:wrap}
+.fl{animation:fl 7s ease-in-out infinite;perspective:1200px}@keyframes fl{50%{transform:translateY(-10px)}}
+.m3{padding:20px;display:grid;gap:14px;transition:transform .15s;transform-style:preserve-3d}.mh{display:flex;justify-content:space-between}
+.bx{border:1px solid var(--bs);border-radius:6px;background:var(--e1);padding:14px;display:grid;gap:8px}.bx.g{border-color:rgba(0,255,135,.35)}
+.sk{height:8px;border-radius:4px;background:linear-gradient(90deg,#16221c 30%,#24392f 50%,#16221c 70%);background-size:200%;animation:sh 2s linear infinite}@keyframes sh{to{background-position:-200%}}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chips span{padding:3px 10px;border:1px solid var(--bs);border-radius:99px;color:var(--t);font-size:12px}
+.mq{overflow:hidden;border-block:1px solid var(--bs);padding:18px 0;background:rgba(5,8,6,.6)}.mq div{display:flex;width:max-content;animation:mq 40s linear infinite}
+.mq span{padding:0 28px;color:#8fb0a0;font:500 12px "JetBrains Mono";letter-spacing:.12em;white-space:nowrap}@keyframes mq{to{transform:translateX(-50%)}}
+h2{font-size:clamp(28px,4.6vw,60px);letter-spacing:-.035em;max-width:18ch}h2 em{font-style:normal;color:rgba(3,14,8,.75);-webkit-text-stroke:1px rgba(110,231,183,.3)}.tag{color:#8fb0a0}
+.words{font-size:clamp(20px,2.6vw,32px);line-height:1.4;max-width:34em;margin-top:56px}.words span{color:rgba(3,14,8,.7);-webkit-text-stroke:.8px rgba(110,231,183,.28);transition:color .3s,-webkit-text-stroke-color .3s}.words span.on{color:var(--tx);-webkit-text-stroke-color:transparent}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:64px;border:1px solid var(--bs);border-radius:8px;background:rgba(10,15,13,.6)}
+.stats div{padding:28px;border-right:1px solid var(--bs)}.stats b{display:block;font:600 52px Sora;color:var(--t);letter-spacing:-.04em;filter:blur(8px);transition:filter 1s}.stats.in b{filter:none}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:56px;border:1px solid var(--bs);border-radius:8px;overflow:hidden}
+.tab{position:relative;text-align:left;padding:28px 24px 34px;background:rgba(10,15,13,.6);border:0;border-right:1px solid var(--bs);color:var(--mu);cursor:pointer;transition:.4s;font:inherit}
+.tab h3{font-size:20px;margin:14px 0 8px;color:inherit}.tab .ic{width:38px;height:38px;border-radius:50%;border:1px solid var(--bs);display:grid;place-items:center;font:500 12px "JetBrains Mono"}
+.tab:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--p)}.tab.on{background:rgba(16,185,129,.08);color:var(--tx)}.tab.on .ic{background:var(--t);color:var(--bg);border-color:var(--t)}.tab.on:after{animation:pr 4.5s linear forwards}@keyframes pr{to{width:100%}}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;margin-top:48px}.regs{display:grid;gap:12px}
+.rc{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border:1px solid var(--bs);border-radius:8px;background:rgba(10,15,13,.7);color:var(--tx);transition:.4s cubic-bezier(.2,.8,.2,1)}
+.rc:hover{background:var(--t);color:#04120a;transform:translateX(6px)}.rc:hover .tag,.rc:hover span{color:#04120a}.rc h3{font-size:20px}
+.orb{position:relative;aspect-ratio:1;max-width:340px;margin:auto}.orb i{position:absolute;inset:0;border:1px solid var(--bs);border-radius:50%;animation:rot 24s linear infinite}
+.orb i:nth-child(2){inset:14%;animation-duration:16s;animation-direction:reverse}.orb i:nth-child(3){inset:28%;animation-duration:11s}
+.orb i:before{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:var(--p);box-shadow:0 0 12px var(--p)}
+.orb b{position:absolute;inset:40%;border-radius:50%;background:var(--t);display:grid;place-items:center;color:#04120a;font:600 20px Sora}@keyframes rot{to{transform:rotate(360deg)}}
+.src{border-top:1px solid var(--bs);margin-top:48px}.src a{display:grid;grid-template-columns:160px 1fr 30px;gap:16px;padding:26px 8px;border-bottom:1px solid var(--bs);color:var(--tx);transition:.3s}.src a:hover{padding-left:24px;background:rgba(16,185,129,.06)}.src span{color:var(--mu)}
+.big{margin:0 var(--m,6vw);border-radius:var(--r,28px);background:var(--t);color:#04120a;text-align:center;padding:130px 24px}.big h2{margin:0 auto 18px;max-width:14ch;font-size:clamp(40px,8vw,110px);line-height:.95}.big p{max-width:48ch;margin:0 auto 32px}
+.big .btn{background:#04120a;color:var(--tx);border-color:#04120a}
+footer{padding:36px 0;background:rgba(5,8,6,.9)}footer .w{display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between}footer p{color:var(--mu);font-size:13px;max-width:62ch;margin-top:8px}footer .ls{display:flex;gap:20px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:900px){.hg,.two{grid-template-columns:1fr}nav .l{display:none}.src a{grid-template-columns:1fr 24px}.src span{grid-column:1}}
+
+.cur{position:fixed;left:0;top:0;width:460px;height:460px;margin:-230px 0 0 -230px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,135,.12),transparent 65%);pointer-events:none;z-index:-1}
+.lgw{color:var(--t);display:inline-block;min-width:80px;font-family:"Noto Sans Devanagari","Noto Sans Telugu",Sora,sans-serif;text-transform:none;font-size:14px;letter-spacing:0;animation:lw .5s both}@keyframes lw{from{opacity:0;transform:translateY(10px);filter:blur(4px)}}
+.pal{padding:70px 0;overflow:hidden;display:grid;gap:16px;transform:perspective(1400px) rotateX(5deg) scale(1.03)}
+.pr{display:flex;gap:16px;width:max-content;animation:mq 50s linear infinite}.pr.r{animation-direction:reverse;animation-duration:62s}.pal:hover .pr{animation-play-state:paused}
+.pc{width:290px;padding:18px 20px;border:1px solid var(--bs);border-radius:8px;background:rgba(10,15,13,.78);backdrop-filter:blur(12px);transition:.3s}.pc:hover{border-color:var(--ba);background:rgba(16,185,129,.14);transform:translateY(-6px) scale(1.03)}
+.pc b{display:block;font:600 16px Sora;margin:6px 0 2px}.pc p{font-size:13px;line-height:20px;color:#a9c4b6}
+.pin{height:440vh}.stk{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+.stg{list-style:none;padding:0;display:grid;gap:6px}.stg li{padding:14px 18px;border-left:2px solid var(--bs);cursor:pointer;opacity:.4;transition:.5s cubic-bezier(.2,.8,.2,1)}.stg li.on{opacity:1;border-color:var(--p);background:rgba(16,185,129,.08);transform:translateX(10px)}.stg h3{font-size:20px}.stg p{font-size:14px;color:#a9c4b6;max-height:0;overflow:hidden;transition:.5s}.stg li.on p{max-height:80px;margin-top:6px}
+.orbw{aspect-ratio:1;max-width:520px;width:100%;margin:auto;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.1),transparent 70%);border:1px solid var(--bs);transition:transform .2s}.orbw svg{width:100%;height:100%}
+.tilt{padding:28px;transition:transform .2s,border-color .3s;background-image:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(110,231,183,.14),transparent 55%)}.tilt h3{font-size:22px;margin:12px 0 8px}.tilt p{color:#a9c4b6}
+.f3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:44px}
+@media(max-width:900px){.stk{grid-template-columns:1fr;align-content:center;gap:12px}.stg p{display:none}}
+</style><div class="cur" id="cur"></div></head><body><div id="pg"></div><canvas class="bg" id="bg"></canvas>
+<nav id="nav"><div class="w"><a class="brand" href="/">IP-SAKTI<i>SAHAYAK</i></a><span class="sp"></span><a class="l" href="#platform">Platform</a><a class="l" href="#how">How it works</a><a class="l" href="#jurisdictions">Jurisdictions</a><a class="l" href="#sources">Sources</a><a class="btn" href="/app/login">Login</a><a class="btn pri" href="/app/register">Register</a></div></nav>
+
+<header class="hero"><div class="w hg"><div>
+<h1><span class="ln"><span>Navigate Ayurveda IP</span></span><span class="ln"><span>&amp; Regulatory Requirements</span></span><span class="ln"><span>with Confidence.</span></span></h1>
+<p class="lead fd">IP-SAKTI Sahayak is a multilingual, source-grounded AI assistant that helps you explore intellectual property and regulatory requirements for Ayurveda products across India (AYUSH), the United States (FDA) and China (NMPA). Every claim is cited back to its source.</p>
+<div class="tag fd" style="margin-bottom:18px">Ask in <b class="lgw" id="lg">English</b></div><div class="cta fd fd2"><a class="btn pri" href="/app/register">Register</a><a class="btn" href="/app/login">Login</a></div></div>
+<div class="fl fd fd2"><div class="glass m3" id="m3"><div class="mh"><span class="tag">Regulatory query</span><span class="tag">Source-grounded</span></div>
+<div class="bx"><span class="tag">Question</span><div class="sk" style="width:90%"></div><div class="sk" style="width:60%"></div></div>
+<div class="bx"><span class="tag">Retrieving indexed documents</span><div class="sk" style="width:75%"></div></div>
+<div class="bx g"><span class="tag" style="color:var(--t)">Grounded answer</span><div class="sk"></div><div class="sk" style="width:85%"></div><div class="sk" style="width:70%"></div><div class="chips"><span>Source 1</span><span>Source 2</span><span>Source 3</span></div></div></div></div></div></header>
+
+<div class="mq"><div id="mq"></div></div>
+
+<div class="pal" id="pal" aria-label="Product highlights"><div class="pr" id="p1"></div><div class="pr r" id="p2"></div></div>
+
+<section id="platform"><div class="w"><span class="tag">The challenge</span><h2 style="margin-top:14px">Innovation should not get lost in <em>legal complexity.</em></h2>
+<p class="words" id="wd">Today, Ayurveda practitioners and startups navigate patents, geographical indications, trademarks, benefit-sharing and drug regulation across disconnected systems. IP-SAKTI turns that maze into a clear, verifiable conversation.</p>
+<div class="stats rv" id="st"><div><b id="n1">–</b><span class="tag">Jurisdictions available</span></div><div><b id="n2">–</b><span class="tag">Languages supported</span></div><div><b>Cited</b><span class="tag">Every answer shows its sources</span></div></div></div></section>
+
+<section id="how"><div class="w"><span class="tag">How it works</span><h2 style="margin:14px 0 0;max-width:none">Ask. Retrieve. Cite.</h2><div class="tabs rv" id="tabs"></div></div></section>
+
+<section class="pin" id="pin" style="padding:0"><div class="stk w"><div><span class="tag">Watch it work</span><h2 style="margin:14px 0 26px">One question. Every jurisdiction.</h2><ol class="stg" id="stg"></ol></div><div class="orbw"><svg id="ov" viewBox="0 0 500 500" role="img" aria-label="Animated diagram of a question moving through jurisdictions to a cited answer"></svg></div></div></section>
+
+<section><div class="w"><span class="tag">Core value</span><h2 style="margin-top:14px">Built for legal-grade answers.</h2><div class="f3">
+<div class="glass tilt"><span class="tag">Multilingual</span><h3>English, Hindi, Telugu</h3><p>Ask in the language you think in and choose the language of the answer.</p></div>
+<div class="glass tilt"><span class="tag">Citations</span><h3>Every claim, sourced</h3><p>Answers are grounded in real government documents, with the retrieved passage and source link shown.</p></div>
+<div class="glass tilt"><span class="tag">Compare</span><h3>Side by side</h3><p>See how India, the US and China differ, followed by a written synthesis.</p></div></div></div></section>
+
+<section id="jurisdictions"><div class="w"><span class="tag">Jurisdictions</span><h2 style="margin-top:14px">Cross borders with fewer unknowns.</h2>
+<div class="two"><div class="regs" id="regs"><p class="tag">Loading jurisdictions…</p></div><div class="orb rv"><i></i><i></i><i></i><b>IP</b></div></div></div></section>
+
+<section id="sources"><div class="w"><span class="tag">Built on authority</span><h2 style="margin-top:14px">Official guidance, not internet guesswork.</h2>
+<p class="lead">Answers are grounded in retrieved regulatory and legal documents. Each citation shows the title, language, type, the retrieved passage and a link to the original source.</p>
+<div class="src rv"><a href="/app/query"><b>India</b><span>Ministry of AYUSH · CDSCO · IP India</span>↗</a><a href="/app/query"><b>United States</b><span>FDA · USPTO · Congress.gov</span>↗</a><a href="/app/query"><b>China</b><span>NMPA · National Medical Products Administration</span>↗</a></div></div></section>
+
+<section style="padding:40px 0 110px"><div class="big" id="big"><h2>Protect what India knows.</h2><p>Join us in making intellectual property guidance more accessible, reliable and inclusive for the Ayurveda ecosystem.</p><a class="btn" href="/app/register">Create an account</a></div></section>
+
+<footer><div class="w"><div><a class="brand" href="/">IP-SAKTI<i>SAHAYAK</i></a><p>Disclaimer: IP-SAKTI Sahayak provides research assistance based on retrieved documents. It is not legal advice. Verify with the cited sources and a qualified professional.</p></div><div class="ls"><a href="#platform">About</a><a href="#jurisdictions">Jurisdictions</a><a href="/app/login">Login</a><a href="/app/admin">Admin Login</a></div></div></footer>
+
+<script src="/shader.js"></script><script>
+const $=id=>document.getElementById(id),API="http://127.0.0.1:8000",RM=matchMedia("(prefers-reduced-motion:reduce)").matches;initShader($("bg"),.55,.55);
+// scroll progress, nav, word reveal, CTA panel expand
+const pin=document.getElementById("pin"),wd=$("wd");wd.innerHTML=wd.textContent.split(" ").map(w=>`<span>${w}</span>`).join(" ");const ws=[...wd.children],big=$("big");
+function sc(){const h=document.documentElement,y=scrollY;$("pg").style.width=y/(h.scrollHeight-innerHeight)*100+"%";$("nav").classList.toggle("s",y>20);
+const r=wd.getBoundingClientRect(),p=RM?1:Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));ws.forEach((s,i)=>s.classList.toggle("on",i/ws.length<p));
+const pr_=pin.getBoundingClientRect();window.__p=Math.min(1,Math.max(0,-pr_.top/(pr_.height-innerHeight)));const b=big.getBoundingClientRect().top,q=RM?1:Math.min(1,Math.max(0,(innerHeight-b)/(innerHeight*.7)));big.style.setProperty("--m",(1-q)*6+"vw");big.style.setProperty("--r",(1-q)*28+"px")}
+addEventListener("scroll",sc,{passive:true});sc();
+// marquee
+$("mq").innerHTML=("<span>PATENTS</span><span>TRADEMARKS</span><span>GEOGRAPHICAL INDICATIONS</span><span>TRADITIONAL KNOWLEDGE</span><span>BENEFIT SHARING</span><span>REGULATORY APPROVAL</span>").repeat(4);
+// hero card tilt
+const m3=$("m3");if(!RM)addEventListener("pointermove",e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;m3.style.transform=`rotateY(${x*-14}deg) rotateX(${y*10}deg)`});
+// steps: click + auto-advance with progress underline
+const S=[["Select jurisdiction","Choose the regulatory regime your question applies to."],["Ask naturally","Type your question in plain language, in a supported language."],["Retrieve evidence","Relevant passages are pulled from indexed source documents."],["Verify every claim","Answers include their sources, so professionals stay in control."]];
+$("tabs").innerHTML=S.map((s,i)=>`<button class="tab" data-i="${i}"><span class="ic">0${i+1}</span><h3>${s[0]}</h3><p style="font-size:14px">${s[1]}</p></button>`).join("");
+const tb=[...document.querySelectorAll(".tab")];let cur=0,tm;function on(i){cur=i;tb.forEach((t,j)=>{t.classList.remove("on");if(j==i){void t.offsetWidth;t.classList.add("on")}});clearInterval(tm);if(!RM)tm=setInterval(()=>on((cur+1)%4),4500)}
+tb.forEach((t,i)=>t.onclick=()=>on(i));on(0);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+const obs=()=>document.querySelectorAll(".rv:not(.in)").forEach((e,i)=>{e.style.transitionDelay=(i%4)*90+"ms";io.observe(e)});obs();
+const cnt=(el,n)=>{if(RM||!n){el.textContent=n;return}let t0;const f=t=>{t0=t0||t;const p=Math.min(1,(t-t0)/1200);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
+// live jurisdictions
+fetch(API+"/api/v1/regimes").then(r=>{if(!r.ok)throw 0;return r.json()}).then(l=>{
+$("regs").innerHTML=l.length?l.map(r=>`<a class="rc rv" href="/app/query?regime=${encodeURIComponent(r.code)}"><div><span class="tag">${r.code}</span><h3>${r.label}</h3></div><span class="tag">${r.language} ↗</span></a>`).join(""):"<p class='lead'>No jurisdictions available yet.</p>";
+obs();cnt($("n1"),l.length);cnt($("n2"),new Set(l.flatMap(r=>String(r.language).split("/").map(x=>x.trim()))).size)
+}).catch(()=>{$("regs").innerHTML="<p class='lead'>Unable to connect to IP-SAKTI backend. Start the API at 127.0.0.1:8000 to see jurisdictions.</p>"});
+
+// ---- extra motion ----
+const cg=$("cur");addEventListener("pointermove",e=>{cg.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;document.querySelectorAll(".pin .orbw").forEach(o=>o.style.transform=`translate(${(e.clientX/innerWidth-.5)*18}px,${(e.clientY/innerHeight-.5)*18}px)`)});
+if(!RM){document.querySelectorAll(".btn").forEach(b=>{b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.3}px)`});b.addEventListener("pointerleave",()=>b.style.transform="")})}
+const L=["English","हिन्दी","తెలుగు"];let li=0;setInterval(()=>{li=(li+1)%3;const g=$("lg");g.style.animation="none";void g.offsetWidth;g.style.animation="";g.textContent=L[li]},2200);
+const C=[["Source citations","Every claim links back to its government source."],["Multilingual","Ask in English, Hindi or Telugu."],["India — AYUSH","Ayurveda regulation and IP guidance."],["United States — FDA","Regulatory requirements for Ayurveda products."],["China — NMPA","Approval and compliance rules in China."],["Compare jurisdictions","See how rules differ side by side."],["Grounded answers","Built on real regulatory documents."],["Cross-jurisdiction synthesis","A written comparison of the answers."]];
+const pc=a=>a.map(c=>`<div class="pc"><span class="tag">Highlight</span><b>${c[0]}</b><p>${c[1]}</p></div>`).join("");$("p1").innerHTML=pc(C.slice(0,4)).repeat(4);$("p2").innerHTML=pc(C.slice(4)).repeat(4);
+document.querySelectorAll(".tilt").forEach(el=>{el.addEventListener("pointermove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(700px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-4px)`;el.style.setProperty("--gx",x*100+50+"%");el.style.setProperty("--gy",y*100+50+"%")});el.addEventListener("pointerleave",()=>el.style.transform="")});
+// ---- scroll-driven orb ----
+const G=[["Ask in your language","Type a question in English, Hindi or Telugu.","Ask"],["Choose jurisdictions","India (AYUSH), the US (FDA) and China (NMPA) each get their own answer.","Pick"],["Retrieve real sources","Passages are pulled from government regulatory documents.","Fetch"],["Answer with citations","Each answer is cited, then compared in a synthesis.","Cite"]];
+$("stg").innerHTML=G.map((g,i)=>`<li data-i="${i}"><h3>${g[0]}</h3><p>${g[1]}</p></li>`).join("");const gl=[...$("stg").children];
+gl.forEach((li,i)=>li.onclick=()=>scrollTo({top:pin.offsetTop+(i+.1)/4*(pin.offsetHeight-innerHeight),behavior:"smooth"}));
+const ov=$("ov"),NS="http://www.w3.org/2000/svg",mk=(t,a,p=ov)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e};
+const kf=(p,a)=>{for(let i=1;i<a.length;i++)if(p<=a[i][0]){const[x0,y0]=a[i-1],[x1,y1]=a[i];return y0+(y1-y0)*Math.max(0,(p-x0)/(x1-x0))}return a[a.length-1][1]};
+const rg=mk("circle",{cx:250,cy:250,fill:"none",stroke:"rgba(16,185,129,.25)","stroke-dasharray":"3 7"}),rp=mk("circle",{cx:250,cy:250,fill:"none",stroke:"#00FF87"});
+const ls=[0,1,2].map(()=>mk("line",{stroke:"#6EE7B7","stroke-width":1.5,x1:250,y1:250}));
+const ps=Array.from({length:18},()=>mk("circle",{r:3,fill:"#00FF87"}));
+const ss=["IN","US","CN"].map(t=>{const g=mk("g");mk("circle",{r:22,fill:"#0A0F0D",stroke:"#6EE7B7","stroke-width":1.5},g);mk("text",{"text-anchor":"middle",y:4,fill:"#F0FDF4","font-size":12,"font-family":"JetBrains Mono"},g).textContent=t;return g});
+const core=mk("circle",{cx:250,cy:250,fill:"#6EE7B7"}),ct=mk("text",{x:250,y:255,"text-anchor":"middle",fill:"#04120a","font-size":13,"font-family":"JetBrains Mono","font-weight":600});
+window.orbFn=p=>{const T=Math.PI*2,R=kf(p,[[0,0],[.22,0],[.4,130],[.7,130],[.88,105],[1,115]]),so=kf(p,[[0,0],[.22,0],[.38,1]]),lk=kf(p,[[0,0],[.7,0],[.88,1]]),t=performance.now()/1000;
+const cr=kf(p,[[0,28],[.25,36],[.5,30],[.75,40],[1,54]]);core.setAttribute("r",cr+Math.sin(t*2)*1.5);
+const rr=(t*40)%90;rp.setAttribute("r",cr+rr);rp.setAttribute("stroke-opacity",(1-rr/90)*kf(p,[[0,.7],[.25,.3],[.3,0]]));rg.setAttribute("r",R);rg.setAttribute("opacity",so);
+ss.forEach((g,i)=>{const a=i*T/3-Math.PI/2+(1-lk)*p*14,x=250+Math.cos(a)*R,y=250+Math.sin(a)*R;g.setAttribute("transform",`translate(${x} ${y}) scale(${.4+.6*so})`);g.setAttribute("opacity",so);ls[i].setAttribute("x2",x);ls[i].setAttribute("y2",y);ls[i].setAttribute("opacity",kf(p,[[0,0],[.72,0],[.88,1]]))});
+const pr=kf(p,[[0,235],[.45,235],[.78,cr+8]]),po=kf(p,[[0,0],[.45,0],[.55,.9],[.9,.9],[1,0]]);ps.forEach((c,j)=>{const a=j*T/18+p*6;c.setAttribute("cx",250+Math.cos(a)*pr);c.setAttribute("cy",250+Math.sin(a)*pr);c.setAttribute("opacity",po)});
+const s=Math.min(3,Math.floor(p*4));ct.textContent=G[s][2];gl.forEach((l,i)=>l.classList.toggle("on",i==s))};
+(function tick(){orbFn(window.__p||0);requestAnimationFrame(tick)})();
+new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){$("st").classList.add("in");o.disconnect()}}).observe($("st"));
+</script></body></html>
