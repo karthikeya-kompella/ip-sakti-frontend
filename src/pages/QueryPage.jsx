@@ -62,19 +62,23 @@ function Single() {
 
     if (!SpeechRecognition) {
       alert(
-        "Voice input isn't supported in this browser. Try Chrome."
+        "Voice input isn't supported in this browser. Try Chrome or Microsoft Edge."
       );
+
       return;
     }
+
 
     /* --------------------------------------------------------
        CREATE RECOGNITION
     -------------------------------------------------------- */
 
-    const recognition = new SpeechRecognition();
+    const recognition =
+      new SpeechRecognition();
+
 
     /* --------------------------------------------------------
-       LANGUAGE
+       VOICE LANGUAGE
     -------------------------------------------------------- */
 
     const voiceLanguages = {
@@ -98,7 +102,9 @@ function Single() {
     -------------------------------------------------------- */
 
     recognition.onstart = () => {
-      console.log("🎤 Voice recognition started");
+      console.log(
+        "🎤 Voice recognition started"
+      );
 
       setListening(true);
 
@@ -118,12 +124,6 @@ function Single() {
         "🎤 Transcript:",
         transcript
       );
-
-      /*
-       * IMPORTANT:
-       * Your question state is q/setQ,
-       * NOT question/setQuestion.
-       */
 
       setQ(transcript);
     };
@@ -194,6 +194,7 @@ function Single() {
   const go = async (e) => {
     e.preventDefault();
 
+
     /* --------------------------------------------------------
        CHECK JURISDICTION
     -------------------------------------------------------- */
@@ -243,6 +244,11 @@ function Single() {
         lang
       );
 
+      console.log(
+        "QUERY RESPONSE:",
+        result
+      );
+
       setRes(result);
 
     } catch (x) {
@@ -262,6 +268,14 @@ function Single() {
   ========================================================== */
 
   const cites = res?.citations || [];
+
+
+  /* ==========================================================
+     CONFIDENCE
+  ========================================================== */
+
+  const confidence =
+    res?.confidence || null;
 
 
   /* ==========================================================
@@ -344,7 +358,7 @@ function Single() {
 
 
           {/* ==================================================
-              QUESTION INPUT + MICROPHONE
+              QUESTION
           ================================================== */}
 
           <label
@@ -357,6 +371,7 @@ function Single() {
             Your question
           </label>
 
+
           <div
             style={{
               display: "flex",
@@ -366,9 +381,9 @@ function Single() {
             }}
           >
 
-            {/* ----------------------------------------------
-                QUESTION TEXTAREA
-            ---------------------------------------------- */}
+            {/* ------------------------------------------------
+                TEXTAREA
+            ------------------------------------------------ */}
 
             <textarea
               id="question"
@@ -387,15 +402,17 @@ function Single() {
             />
 
 
-            {/* ----------------------------------------------
-                MICROPHONE BUTTON
-            ---------------------------------------------- */}
+            {/* ------------------------------------------------
+                MICROPHONE
+            ------------------------------------------------ */}
 
             <button
               type="button"
               onClick={startVoiceInput}
               title="Speak your question"
-              disabled={busy || listening}
+              disabled={
+                busy || listening
+              }
               style={{
                 padding: "10px 14px",
                 background: "#1a3a2e",
@@ -413,7 +430,9 @@ function Single() {
                     : 1,
               }}
             >
-              {listening ? "🔴" : "🎤"}
+              {listening
+                ? "🔴"
+                : "🎤"}
             </button>
 
           </div>
@@ -431,7 +450,8 @@ function Single() {
                 marginBottom: "0",
               }}
             >
-              🎤 Listening... Speak your question now.
+              🎤 Listening... Speak your
+              question now.
             </p>
           )}
 
@@ -454,7 +474,9 @@ function Single() {
               id="top-k"
               value={k}
               onChange={(e) =>
-                setK(Number(e.target.value))
+                setK(
+                  Number(e.target.value)
+                )
               }
               disabled={busy}
             >
@@ -479,13 +501,15 @@ function Single() {
 
 
           {/* ==================================================
-              SUBMIT BUTTON
+              ASK BUTTON
           ================================================== */}
 
           <button
             type="submit"
             className="btn"
-            disabled={busy || listening}
+            disabled={
+              busy || listening
+            }
             style={{
               marginTop: "15px",
             }}
@@ -506,27 +530,102 @@ function Single() {
 
 
         {/* ====================================================
-            ANSWER
+            RESPONSE
         ==================================================== */}
 
         {res && (
-          <AnswerCard
-            label={label(
-              res.regime || regime
+          <>
+
+            {/* =================================================
+                CONFIDENCE BADGE
+            ================================================= */}
+
+            {confidence && (
+              <div
+                style={{
+                  display: "inline-block",
+                  padding: "4px 10px",
+                  borderRadius: "4px",
+                  fontSize: "12px",
+                  marginTop: "12px",
+                  marginBottom: "8px",
+
+                  background:
+                    confidence.level === "high"
+                      ? "#1a4d2e"
+                      : confidence.level === "medium"
+                      ? "#4d4a1a"
+                      : "#4d1a1a",
+
+                  color:
+                    confidence.level === "high"
+                      ? "#4ade80"
+                      : confidence.level === "medium"
+                      ? "#facc15"
+                      : "#f87171",
+                }}
+              >
+
+                Confidence:{" "}
+
+                {confidence.level
+                  ? confidence.level.toUpperCase()
+                  : "UNKNOWN"}
+
+                {" "}
+
+                (
+                {typeof confidence.score ===
+                "number"
+                  ? confidence.score
+                  : "N/A"}
+                )
+
+              </div>
             )}
-            answer={res.answer}
-            count={cites.length}
-            onCites={() =>
-              setOpen(true)
-            }
-          />
+
+
+            {/* =================================================
+                CONFIDENCE NOTE
+            ================================================= */}
+
+            {confidence?.note && (
+              <p
+                className="muted"
+                style={{
+                  marginTop: "0",
+                  marginBottom: "12px",
+                  fontSize: "13px",
+                }}
+              >
+                {confidence.note}
+              </p>
+            )}
+
+
+            {/* =================================================
+                ANSWER
+            ================================================= */}
+
+            <AnswerCard
+              label={label(
+                res.regime || regime
+              )}
+              answer={res.answer}
+              count={cites.length}
+              onCites={() =>
+                setOpen(true)
+              }
+            />
+
+          </>
         )}
 
       </section>
 
 
       {/* ======================================================
-          CITATION PANEL
+          CITATIONS
       ====================================================== */}
 
       <CitationPanel
@@ -558,17 +657,15 @@ export default function Portal() {
 
 
   /* ==========================================================
-     CHANGE QUERY MODE
+     CHANGE MODE
   ========================================================== */
 
   const set = (m) => {
-
     setSp(
       m === "compare"
         ? { mode: "compare" }
         : {}
     );
-
   };
 
 
@@ -580,7 +677,7 @@ export default function Portal() {
     <div>
 
       {/* ======================================================
-          QUERY MODE SWITCH
+          MODE SWITCH
       ====================================================== */}
 
       <div
