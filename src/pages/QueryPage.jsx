@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 
 import {
   JurisdictionSelector,
-  QuestionInput,
   AnswerCard,
   CitationPanel,
   ErrorMessage,
@@ -19,10 +18,13 @@ import { query } from "../services/api";
 ============================================================ */
 
 function Single() {
-
   const [sp] = useSearchParams();
 
   const { label } = useRegimes();
+
+  /* ----------------------------------------------------------
+     STATE
+  ---------------------------------------------------------- */
 
   const [regime, setRegime] = useState(
     sp.get("regime") || ""
@@ -50,25 +52,29 @@ function Single() {
   ========================================================== */
 
   const startVoiceInput = () => {
-
     const SpeechRecognition =
       window.SpeechRecognition ||
       window.webkitSpeechRecognition;
 
-    // Browser does not support speech recognition
+    /* --------------------------------------------------------
+       CHECK BROWSER SUPPORT
+    -------------------------------------------------------- */
+
     if (!SpeechRecognition) {
-
-      setErr(
-        "Voice input is not supported in this browser. Please use Google Chrome or Microsoft Edge."
+      alert(
+        "Voice input isn't supported in this browser. Try Chrome."
       );
-
       return;
     }
+
+    /* --------------------------------------------------------
+       CREATE RECOGNITION
+    -------------------------------------------------------- */
 
     const recognition = new SpeechRecognition();
 
     /* --------------------------------------------------------
-       Select language based on response language
+       LANGUAGE
     -------------------------------------------------------- */
 
     const voiceLanguages = {
@@ -92,13 +98,11 @@ function Single() {
     -------------------------------------------------------- */
 
     recognition.onstart = () => {
-
       console.log("🎤 Voice recognition started");
 
       setListening(true);
 
       setErr("");
-
     };
 
 
@@ -107,7 +111,6 @@ function Single() {
     -------------------------------------------------------- */
 
     recognition.onresult = (event) => {
-
       const transcript =
         event.results[0][0].transcript;
 
@@ -116,9 +119,13 @@ function Single() {
         transcript
       );
 
-      // Put recognized speech into question box
-      setQ(transcript);
+      /*
+       * IMPORTANT:
+       * Your question state is q/setQ,
+       * NOT question/setQuestion.
+       */
 
+      setQ(transcript);
     };
 
 
@@ -127,13 +134,11 @@ function Single() {
     -------------------------------------------------------- */
 
     recognition.onend = () => {
-
       console.log(
         "🎤 Voice recognition ended"
       );
 
       setListening(false);
-
     };
 
 
@@ -142,7 +147,6 @@ function Single() {
     -------------------------------------------------------- */
 
     recognition.onerror = (event) => {
-
       console.error(
         "🎤 Speech recognition error:",
         event.error
@@ -151,25 +155,18 @@ function Single() {
       setListening(false);
 
       if (event.error === "not-allowed") {
-
         setErr(
           "Microphone permission was denied. Please allow microphone access in your browser."
         );
-
       } else if (event.error === "no-speech") {
-
         setErr(
-          "No speech was detected. Please try speaking again."
+          "No speech was detected. Please try again."
         );
-
       } else {
-
         setErr(
           "Voice input failed. Please try again."
         );
-
       }
-
     };
 
 
@@ -177,8 +174,16 @@ function Single() {
        START RECOGNITION
     -------------------------------------------------------- */
 
-    recognition.start();
+    try {
+      recognition.start();
+    } catch (error) {
+      console.error(
+        "Failed to start speech recognition:",
+        error
+      );
 
+      setListening(false);
+    }
   };
 
 
@@ -187,11 +192,13 @@ function Single() {
   ========================================================== */
 
   const go = async (e) => {
-
     e.preventDefault();
 
-    if (!regime) {
+    /* --------------------------------------------------------
+       CHECK JURISDICTION
+    -------------------------------------------------------- */
 
+    if (!regime) {
       setErr(
         "Select a jurisdiction first."
       );
@@ -199,8 +206,12 @@ function Single() {
       return;
     }
 
-    if (!q.trim()) {
 
+    /* --------------------------------------------------------
+       CHECK QUESTION
+    -------------------------------------------------------- */
+
+    if (!q.trim()) {
       setErr(
         "Please enter a question first."
       );
@@ -208,14 +219,23 @@ function Single() {
       return;
     }
 
+
+    /* --------------------------------------------------------
+       START LOADING
+    -------------------------------------------------------- */
+
     setBusy(true);
 
     setErr("");
 
     setRes(null);
 
-    try {
 
+    /* --------------------------------------------------------
+       API REQUEST
+    -------------------------------------------------------- */
+
+    try {
       const result = await query(
         q.trim(),
         regime,
@@ -226,19 +246,20 @@ function Single() {
       setRes(result);
 
     } catch (x) {
-
       setErr(
-        x.message || "Something went wrong."
+        x.message ||
+        "Something went wrong."
       );
 
     } finally {
-
       setBusy(false);
-
     }
-
   };
 
+
+  /* ==========================================================
+     CITATIONS
+  ========================================================== */
 
   const cites = res?.citations || [];
 
@@ -248,10 +269,13 @@ function Single() {
   ========================================================== */
 
   return (
-
     <div className="work">
 
       <section className="main">
+
+        {/* ----------------------------------------------------
+            HEADER
+        ---------------------------------------------------- */}
 
         <h1>
           Ask IP-SAKTI
@@ -263,18 +287,18 @@ function Single() {
         </p>
 
 
-        {/* ==================================================
+        {/* ====================================================
             QUERY FORM
-        ================================================== */}
+        ==================================================== */}
 
         <form
           onSubmit={go}
           className="glass pad"
         >
 
-          {/* ----------------------------------------------
+          {/* ==================================================
               JURISDICTION
-          ---------------------------------------------- */}
+          ================================================== */}
 
           <label>
             Jurisdiction
@@ -286,9 +310,9 @@ function Single() {
           />
 
 
-          {/* ----------------------------------------------
+          {/* ==================================================
               RESPONSE LANGUAGE
-          ---------------------------------------------- */}
+          ================================================== */}
 
           <label htmlFor="rl">
             Response language
@@ -301,7 +325,6 @@ function Single() {
               setLang(e.target.value)
             }
           >
-
             <option value="auto">
               Auto-detect
             </option>
@@ -317,110 +340,204 @@ function Single() {
             <option value="te">
               Telugu
             </option>
-
           </select>
 
 
-          {/* ----------------------------------------------
-              QUESTION INPUT
-          ---------------------------------------------- */}
+          {/* ==================================================
+              QUESTION INPUT + MICROPHONE
+          ================================================== */}
 
-          <QuestionInput
-            value={q}
-            onChange={setQ}
-            k={k}
-            onK={setK}
-            busy={busy}
-          />
-
-
-          {/* ----------------------------------------------
-              VOICE INPUT BUTTON
-          ---------------------------------------------- */}
-
-          <button
-            type="button"
-            className="btn"
-            onClick={startVoiceInput}
-            disabled={busy || listening}
+          <label
+            htmlFor="question"
             style={{
-              marginTop: "10px",
+              display: "block",
+              marginTop: "12px",
+            }}
+          >
+            Your question
+          </label>
+
+          <div
+            style={{
               display: "flex",
-              alignItems: "center",
               gap: "8px",
+              alignItems: "flex-start",
+              width: "100%",
             }}
           >
 
-            {listening ? (
-              <>
-                🔴 Listening...
-              </>
-            ) : (
-              <>
-                🎤 Speak
-              </>
-            )}
+            {/* ----------------------------------------------
+                QUESTION TEXTAREA
+            ---------------------------------------------- */}
 
-          </button>
+            <textarea
+              id="question"
+              value={q}
+              onChange={(e) =>
+                setQ(e.target.value)
+              }
+              placeholder="Ask about patents, regulatory approval, traditional knowledge, Ayurveda products, or compliance requirements..."
+              disabled={busy}
+              rows={5}
+              style={{
+                flex: 1,
+                width: "100%",
+                resize: "vertical",
+              }}
+            />
 
 
-          {/* ----------------------------------------------
+            {/* ----------------------------------------------
+                MICROPHONE BUTTON
+            ---------------------------------------------- */}
+
+            <button
+              type="button"
+              onClick={startVoiceInput}
+              title="Speak your question"
+              disabled={busy || listening}
+              style={{
+                padding: "10px 14px",
+                background: "#1a3a2e",
+                border: "1px solid #2ecc71",
+                borderRadius: "6px",
+                color: "#2ecc71",
+                cursor:
+                  busy || listening
+                    ? "not-allowed"
+                    : "pointer",
+                fontSize: "18px",
+                opacity:
+                  busy || listening
+                    ? 0.6
+                    : 1,
+              }}
+            >
+              {listening ? "🔴" : "🎤"}
+            </button>
+
+          </div>
+
+
+          {/* ==================================================
               VOICE STATUS
-          ---------------------------------------------- */}
+          ================================================== */}
 
           {listening && (
             <p
               className="muted"
               style={{
                 marginTop: "8px",
+                marginBottom: "0",
               }}
             >
-              Speak your question now...
+              🎤 Listening... Speak your question now.
             </p>
           )}
+
+
+          {/* ==================================================
+              TOP K
+          ================================================== */}
+
+          <div
+            style={{
+              marginTop: "12px",
+            }}
+          >
+
+            <label htmlFor="top-k">
+              Number of sources
+            </label>
+
+            <select
+              id="top-k"
+              value={k}
+              onChange={(e) =>
+                setK(Number(e.target.value))
+              }
+              disabled={busy}
+            >
+              <option value={3}>
+                3 sources
+              </option>
+
+              <option value={5}>
+                5 sources
+              </option>
+
+              <option value={8}>
+                8 sources
+              </option>
+
+              <option value={10}>
+                10 sources
+              </option>
+            </select>
+
+          </div>
+
+
+          {/* ==================================================
+              SUBMIT BUTTON
+          ================================================== */}
+
+          <button
+            type="submit"
+            className="btn"
+            disabled={busy || listening}
+            style={{
+              marginTop: "15px",
+            }}
+          >
+            {busy
+              ? "Searching..."
+              : "Ask IP-SAKTI"}
+          </button>
 
         </form>
 
 
-        {/* ==================================================
+        {/* ====================================================
             ERROR
-        ================================================== */}
+        ==================================================== */}
 
         <ErrorMessage m={err} />
 
 
-        {/* ==================================================
+        {/* ====================================================
             ANSWER
-        ================================================== */}
+        ==================================================== */}
 
         {res && (
-
           <AnswerCard
             label={label(
               res.regime || regime
             )}
             answer={res.answer}
             count={cites.length}
-            onCites={() => setOpen(true)}
+            onCites={() =>
+              setOpen(true)
+            }
           />
-
         )}
 
       </section>
 
 
-      {/* ====================================================
-          CITATIONS
-      ==================================================== */}
+      {/* ======================================================
+          CITATION PANEL
+      ====================================================== */}
 
       <CitationPanel
         cites={cites}
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() =>
+          setOpen(false)
+        }
       />
 
     </div>
-
   );
 }
 
@@ -440,6 +557,10 @@ export default function Portal() {
       : "single";
 
 
+  /* ==========================================================
+     CHANGE QUERY MODE
+  ========================================================== */
+
   const set = (m) => {
 
     setSp(
@@ -451,8 +572,11 @@ export default function Portal() {
   };
 
 
-  return (
+  /* ==========================================================
+     UI
+  ========================================================== */
 
+  return (
     <div>
 
       {/* ======================================================
@@ -466,20 +590,30 @@ export default function Portal() {
       >
 
         {[
-          ["single", "Single jurisdiction"],
-          ["compare", "Compare jurisdictions"],
+          [
+            "single",
+            "Single jurisdiction",
+          ],
+          [
+            "compare",
+            "Compare jurisdictions",
+          ],
         ].map(([m, t]) => (
 
           <button
             key={m}
             className={
               "reg" +
-              (mode === m ? " on" : "")
+              (mode === m
+                ? " on"
+                : "")
             }
             aria-pressed={
               mode === m
             }
-            onClick={() => set(m)}
+            onClick={() =>
+              set(m)
+            }
           >
             {t}
           </button>
@@ -500,7 +634,5 @@ export default function Portal() {
       )}
 
     </div>
-
   );
-
 }
